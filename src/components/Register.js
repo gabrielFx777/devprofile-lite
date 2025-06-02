@@ -4,8 +4,11 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "./Form.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -23,20 +26,41 @@ export default function Register() {
       const uid = userCredential.user.uid;
 
       await setDoc(doc(db, "userProfiles", uid), {
-        nomeCompleto: email,
+        nomeCompleto: nome,
         bioCurta: "Este é um perfil novo.",
         linkPortfolio: "https://meuportfolio.com",
       });
 
-      navigate("/login");
+      // Notificação de sucesso
+      toast.success("Cadastro realizado com sucesso!");
+
+      // Espera 2 segundos e redireciona para login
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (err) {
-      setErro("Erro ao cadastrar: " + err.message);
+      if (err.code === "auth/email-already-in-use") {
+        setErro(
+          "Este email já está em uso. Tente fazer login ou usar outro email."
+        );
+      } else {
+        setErro("Erro ao cadastrar: " + err.message);
+      }
     }
   };
 
   return (
     <div className="form-container">
       <h2>Cadastro</h2>
+
+      <input
+        placeholder="Nome completo"
+        type="text"
+        onChange={(e) => setNome(e.target.value)}
+        value={nome}
+        className="form-input"
+      />
+
       <input
         placeholder="Email"
         type="email"
@@ -44,6 +68,7 @@ export default function Register() {
         value={email}
         className="form-input"
       />
+
       <input
         placeholder="Senha"
         type="password"
@@ -51,6 +76,7 @@ export default function Register() {
         value={senha}
         className="form-input"
       />
+
       <button onClick={cadastrar} className="form-button">
         Cadastrar
       </button>
@@ -64,6 +90,9 @@ export default function Register() {
       </button>
 
       {erro && <p className="form-error">{erro}</p>}
+
+      {/* Container do Toast */}
+      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }

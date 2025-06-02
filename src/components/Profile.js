@@ -15,12 +15,16 @@ export default function Profile() {
         const docRef = doc(db, "userProfiles", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setPerfil(docSnap.data());
+          setPerfil({
+            ...docSnap.data(),
+            email: user.email, // <-- inclui o email aqui
+          });
         } else {
           setPerfil({
             nomeCompleto: "",
             bioCurta: "Perfil ainda não configurado",
             linkPortfolio: "",
+            email: user.email, // <-- mesmo se o Firestore estiver vazio
           });
         }
       } else {
@@ -42,6 +46,9 @@ export default function Profile() {
         <div className="perfil-info">
           <p>
             <strong>Nome:</strong> {perfil.nomeCompleto}
+          </p>
+          <p>
+            <strong>Email:</strong> {perfil.email}
           </p>
           <p>
             <strong>Bio:</strong> {perfil.bioCurta}
