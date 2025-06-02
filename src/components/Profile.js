@@ -3,6 +3,7 @@ import { auth, db } from "../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import "./Form.css";
 
 export default function Profile() {
   const [perfil, setPerfil] = useState(null);
@@ -34,10 +35,11 @@ export default function Profile() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Meu Perfil</h2>
+
       {perfil ? (
-        <div>
+        <div className="perfil-info">
           <p>
             <strong>Nome:</strong> {perfil.nomeCompleto}
           </p>
@@ -46,13 +48,18 @@ export default function Profile() {
           </p>
           <p>
             <strong>Portfólio:</strong>{" "}
-            <a href={perfil.linkPortfolio}>{perfil.linkPortfolio}</a>
+            <a href={perfil.linkPortfolio} target="_blank" rel="noreferrer">
+              {perfil.linkPortfolio}
+            </a>
           </p>
         </div>
       ) : (
         <p>Carregando...</p>
       )}
-      <button onClick={sair}>Sair</button>
+
+      <button onClick={sair} className="form-button">
+        Sair
+      </button>
     </div>
   );
 }

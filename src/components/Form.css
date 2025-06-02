@@ -1,0 +1,131 @@
+/* FORM.CSS COMPLETO PARA TODAS AS TELAS DO DEVPROFILE LITE */
+
+/* ===== CONTAINER PADRÃO ===== */
+.form-container {
+  max-width: 450px;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 35px 30px;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== TÍTULOS ===== */
+.form-container h2 {
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* ===== CAMPOS DE ENTRADA ===== */
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* ===== BOTÕES ===== */
+.form-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #c05e5e;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #d83939;
+}
+
+/* ===== MENSAGENS DE ERRO ===== */
+.form-error {
+  margin-top: 15px;
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+/* ===== PERFIL ===== */
+.perfil-info {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.perfil-info p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #333;
+}
+
+.perfil-info strong {
+  color: #222;
+}
+
+.perfil-info a {
+  color: #007bff;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.perfil-info a:hover {
+  text-decoration: underline;
+}
+
+/* ===== LINKS GERAIS ===== */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== TEXTO PADRÃO ===== */
+.form-container p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.p{
+  cursor: pointer;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 500px) {
+  .form-container {
+    margin: 20px;
+    padding: 25px 20px;
+  }
+
+  .form-container h2 {
+    font-size: 24px;
+  }
+
+  .form-button {
+    font-size: 15px;
+  }
+
+  .perfil-info p {
+    font-size: 15px;
+  }
+}
